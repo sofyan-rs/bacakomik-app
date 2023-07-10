@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Linotte-Bold.otf",
+      "sha1": "2057974561a7840fea26d6e46132ff23f927aa32"
+    },
+    {
+      "path": "src/assets/fonts/Linotte-Light.otf",
+      "sha1": "224b779f0f047e23e8f8c53d76e57a1cadc31492"
+    },
+    {
+      "path": "src/assets/fonts/Linotte-Medium.otf",
+      "sha1": "4640e94b323633de9ba53c079642aab6b37f5eee"
+    },
+    {
+      "path": "src/assets/fonts/Linotte-Regular.otf",
+      "sha1": "3bde965fc2ac11ad150542f9918b961ad50e54d2"
+    },
+    {
+      "path": "src/assets/fonts/Linotte-SemiBold.ttf",
+      "sha1": "1460415746a306f0b55739da43e4de20bc0790e0"
+    }
+  ]
+}
