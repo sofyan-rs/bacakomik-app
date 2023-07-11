@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "334765493163",
+    "project_id": "bacakomik-koidevz",
+    "storage_bucket": "bacakomik-koidevz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334765493163:android:ce245a142de2569bd120ee",
+        "android_client_info": {
+          "package_name": "com.bacakomik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334765493163-ms6k9qave79vtjidcqnht8hq3n4vtdor.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bacakomik",
+            "certificate_hash": "269bb11269f9d079693f3e33ac0c8f69d16acf11"
+          }
+        },
+        {
+          "client_id": "334765493163-t9tm6u19ahot839h4cg2hjv4t6enjdgj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bacakomik",
+            "certificate_hash": "65a30a4456ec8443e63787222c3ab06d2fcded56"
+          }
+        },
+        {
+          "client_id": "334765493163-ngoca79kbekpcg35uab8vijh1hn440nq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5AzkbwYeFQvtp_P2OamkEuLj1sd01Bt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334765493163-03ida5ga7dtul3c5hcqsrsetv1gm1e9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
