@@ -4,13 +4,12 @@ import React from 'react';
 import {color, font} from '../../theme';
 import {SearchIcon} from 'lucide-react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useAppSelector} from '../../redux/hooks';
 
-interface Props {
-  name: string;
-}
-
-export default function Header({name}: Props) {
+export default function Header() {
   const navigate = useNavigation<any>();
+
+  const {userData} = useAppSelector(state => state.user);
 
   const currentDateTime = new Date();
   const currentHour = currentDateTime.getHours();
@@ -33,7 +32,7 @@ export default function Header({name}: Props) {
       <View className="flex-row justify-between items-center">
         <View className="flex-row items-center space-x-3">
           <Image
-            source={require('../../assets/img/avatar.jpg')}
+            source={{uri: userData?.photoURL}}
             style={{
               width: 50,
               height: 50,
@@ -51,7 +50,7 @@ export default function Header({name}: Props) {
             <Text
               className="text-xl"
               style={{color: color.primary, ...font.semibold}}>
-              {name}
+              {userData?.displayName}
             </Text>
           </View>
         </View>

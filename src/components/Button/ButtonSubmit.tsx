@@ -13,7 +13,7 @@ export default function ButtonSubmit({text, ...props}: any) {
           ? {backgroundColor: color['gray-4'], elevation: 0}
           : {
               backgroundColor: color.primary,
-              elevation: 5,
+              elevation: 2,
               shadowColor: color.primary,
             }
       }

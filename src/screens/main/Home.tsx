@@ -58,7 +58,11 @@ export default function More() {
   }, [isFocused]);
 
   return (
-    <SafeAreaView className="h-full bg-white">
+    <SafeAreaView
+      className="h-full"
+      style={{
+        backgroundColor: color['gray-2'],
+      }}>
       <LayoutMain>
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -70,7 +74,7 @@ export default function More() {
               colors={[color.primary]}
             />
           }>
-          <Header name="Sofyan R." />
+          <Header />
           <HotComic hotComic={hotComic} refreshing={refreshing} />
           <ComicUpdates comicUpdates={comicUpdates} refreshing={refreshing} />
         </ScrollView>

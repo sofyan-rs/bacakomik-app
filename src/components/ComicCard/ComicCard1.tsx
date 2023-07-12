@@ -4,17 +4,25 @@ import React from 'react';
 import {color, font} from '../../theme';
 import {CheckCircleIcon, RefreshCwIcon} from 'lucide-react-native';
 import {ComicListItem} from '../../types';
+import {useNavigation} from '@react-navigation/native';
 
 interface Props {
   item: ComicListItem;
 }
 
 export default function ComicCard1({item}: Props) {
+  const navigate = useNavigation<any>();
+
   return (
     <Pressable
+      onPress={() =>
+        navigate.navigate('ComicDetail', {
+          slug: item.slug,
+        })
+      }
       className="rounded-lg my-2 overflow-hidden flex-row items-center p-2 border space-x-3"
       style={{
-        backgroundColor: color['gray-6'],
+        backgroundColor: color['gray-1'],
         borderColor: color['gray-4'],
       }}>
       <Image

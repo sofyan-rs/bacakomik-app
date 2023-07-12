@@ -16,7 +16,7 @@ export default function HotComic({refreshing, hotComic}: Props) {
     <View
       className="rounded-t-3xl pb-6"
       style={{
-        backgroundColor: color['gray-5'],
+        backgroundColor: color['gray-3'],
       }}>
       <View className="flex-row items-center mx-5 mt-5 mb-2 space-x-1.5">
         <FlameIcon color={color.primary} />
@@ -53,7 +53,7 @@ export default function HotComic({refreshing, hotComic}: Props) {
           />
           <Text
             className="text-center text-base"
-            style={{color: color['gray-2'], ...font.semibold}}>
+            style={{color: color['gray-5'], ...font.semibold}}>
             Maaf komik tidak ditemukan
           </Text>
         </View>

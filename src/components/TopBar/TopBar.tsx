@@ -24,10 +24,11 @@ export default function TopBar({
 
   return (
     <View
-      className="bg-white px-5 py-4 absolute top-0 left-0 right-0 z-30 flex-row justify-between items-center"
+      className="px-5 py-4 absolute top-0 left-0 right-0 z-40 flex-row justify-between items-center"
       style={{
-        elevation: 3,
-        shadowColor: color['gray-3'],
+        backgroundColor: color['gray-1'],
+        elevation: 5,
+        shadowColor: color['gray-2'],
       }}>
       <View className="flex-row items-center space-x-2">
         {!isWithoutBack && (

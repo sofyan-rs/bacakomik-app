@@ -22,3 +22,27 @@ export interface Genre {
   count: string;
   slug: string;
 }
+
+export interface Chapter {
+  number: string;
+  slug: string;
+  date: string;
+}
+
+export interface ComicDetailData {
+  title: string;
+  coverImg: string;
+  alternativeTitle: string;
+  genres: {
+    name: string;
+    slug: string;
+  }[];
+  released: string;
+  status: string;
+  totalChapter: string;
+  author: string;
+  type: string;
+  rating: string;
+  synopsis: string;
+  chapters: Chapter[];
+}

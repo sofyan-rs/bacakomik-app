@@ -92,10 +92,10 @@ export default function FilterModal({
                   onPress={() => {
                     setFilterType(item.id);
                   }}
-                  className="px-3 py-2 rounded-md bg-gray-200 flex-row items-center space-x-1.5"
+                  className="px-3 py-2 rounded-md flex-row items-center space-x-1.5"
                   style={{
                     backgroundColor:
-                      filterType === item.id ? color.primary : color['gray-4'],
+                      filterType === item.id ? color.primary : color['gray-2'],
                   }}>
                   {filterType === item.id && (
                     <CheckCircle2Icon color="white" size={18} />
@@ -103,7 +103,7 @@ export default function FilterModal({
                   <Text
                     className="text-sm"
                     style={{
-                      color: filterType === item.id ? 'white' : color['gray-2'],
+                      color: filterType === item.id ? 'white' : color['gray-5'],
                       ...font.semibold,
                     }}>
                     {item.name}
@@ -128,12 +128,12 @@ export default function FilterModal({
                   onPress={() => {
                     setFilterStatus(item.id);
                   }}
-                  className="px-3 py-2 rounded-md bg-gray-200 flex-row items-center space-x-1.5"
+                  className="px-3 py-2 rounded-md flex-row items-center space-x-1.5"
                   style={{
                     backgroundColor:
                       filterStatus === item.id
                         ? color.primary
-                        : color['gray-4'],
+                        : color['gray-2'],
                   }}>
                   {filterStatus === item.id && (
                     <CheckCircle2Icon color="white" size={18} />
@@ -142,7 +142,7 @@ export default function FilterModal({
                     className="text-sm"
                     style={{
                       color:
-                        filterStatus === item.id ? 'white' : color['gray-2'],
+                        filterStatus === item.id ? 'white' : color['gray-5'],
                       ...font.semibold,
                     }}>
                     {item.name}
@@ -167,12 +167,12 @@ export default function FilterModal({
                   onPress={() => {
                     setFilterSortBy(item.id);
                   }}
-                  className="px-3 py-2 rounded-md bg-gray-200 flex-row items-center space-x-1.5"
+                  className="px-3 py-2 rounded-md flex-row items-center space-x-1.5"
                   style={{
                     backgroundColor:
                       filterSortBy === item.id
                         ? color.primary
-                        : color['gray-4'],
+                        : color['gray-2'],
                   }}>
                   {filterSortBy === item.id && (
                     <CheckCircle2Icon color="white" size={18} />
@@ -181,7 +181,7 @@ export default function FilterModal({
                     className="text-sm"
                     style={{
                       color:
-                        filterSortBy === item.id ? 'white' : color['gray-2'],
+                        filterSortBy === item.id ? 'white' : color['gray-5'],
                       ...font.semibold,
                     }}>
                     {item.name}

@@ -12,9 +12,10 @@ const TabBar = ({state, descriptors, navigation}: any) => {
     <View
       className={`${
         isLandscape ? 'top-0 pt-4' : 'w-full flex-row'
-      } absolute bottom-0 bg-white border-gray-100`}
+      } absolute bottom-0`}
       style={{
         elevation: 10,
+        backgroundColor: color['gray-3'],
       }}>
       {state.routes.map((route: any, index: number) => {
         const {options} = descriptors[route.key];
@@ -67,7 +68,7 @@ const TabBar = ({state, descriptors, navigation}: any) => {
                             ...font.semibold,
                           }
                         : {
-                            color: color['gray-1'],
+                            color: color['gray-5'],
                             ...font.medium,
                           }
                     }>

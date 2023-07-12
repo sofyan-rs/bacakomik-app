@@ -22,8 +22,9 @@ export default function SearchBar({search, setSearch}: Props) {
 
   return (
     <View
-      className="bg-white p-4 absolute top-0 left-0 right-0 z-30 space-x-3 flex-row justify-between items-center"
+      className="p-4 absolute top-0 left-0 right-0 z-30 space-x-3 flex-row justify-between items-center"
       style={{
+        backgroundColor: color['gray-1'],
         elevation: 3,
         shadowColor: color['gray-3'],
       }}>
@@ -39,10 +40,10 @@ export default function SearchBar({search, setSearch}: Props) {
         <TextInput
           className="text-lg flex-1 rounded-md py-2 px-4 border-[1.5px]"
           placeholder="Cari komik..."
-          placeholderTextColor={color['gray-2']}
+          placeholderTextColor={color['gray-5']}
           style={{
-            borderColor: isFocused ? color.primary : color['gray-5'],
-            color: color['gray-2'],
+            borderColor: isFocused ? color.primary : color['gray-4'],
+            color: color.text,
             ...font.medium,
           }}
           value={searchText}

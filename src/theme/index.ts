@@ -1,18 +1,17 @@
 export const color = {
   primary: '#f87171',
   primaryDark: '#ef4444',
-  text: '#4A4A4A',
+  text: '#eeeeee',
   overlay: '#00000080',
-  'gray-1': '#BFBFBF',
-  'gray-2': '#9B9B9B',
-  'gray-3': '#E0E0E0',
-  'gray-4': '#F1F1F1',
-  'gray-5': '#F5F5F5',
-  'gray-6': '#f9f9f9',
   star: '#FFC107',
   mangaType: '#3367d6',
   manhwaType: '#a12e24',
   manhuaType: '#009688',
+  'gray-1': '#24292e',
+  'gray-2': '#282e34',
+  'gray-3': '#1f2428',
+  'gray-4': '#3c464e',
+  'gray-5': '#596874',
 };
 
 export const font = {

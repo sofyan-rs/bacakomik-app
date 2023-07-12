@@ -58,8 +58,9 @@ export default function PopupModal({
           <Animated.View
             style={{
               translateY: slideAnim,
+              backgroundColor: color['gray-3'],
             }}
-            className="bg-white w-full overflow-hidden max-h-[90%]">
+            className="w-full overflow-hidden max-h-[90%]">
             <View
               className="border-b-2 border-dashed px-5 py-3"
               style={{
@@ -79,7 +80,7 @@ export default function PopupModal({
                   onPress={() => {
                     setModalVisible(false);
                   }}
-                  underlayColor={color['gray-4']}>
+                  underlayColor={color['gray-2']}>
                   <XIcon color={color.primary} size={30} strokeWidth={2} />
                 </TouchableHighlight>
               </View>

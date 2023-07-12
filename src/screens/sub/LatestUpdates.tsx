@@ -75,7 +75,7 @@ export default function LatestUpdates() {
   return (
     <SafeAreaView
       style={{
-        backgroundColor: color['gray-4'],
+        backgroundColor: color['gray-2'],
       }}>
       <TopBar title="Update Terbaru" />
       <View className="h-full pt-16">
@@ -110,7 +110,7 @@ export default function LatestUpdates() {
                 />
                 <Text
                   className="text-center text-base"
-                  style={{color: color['gray-2'], ...font.semibold}}>
+                  style={{color: color['gray-5'], ...font.semibold}}>
                   Maaf komik tidak ditemukan
                 </Text>
               </View>

@@ -38,7 +38,7 @@ export default function GenreList({
     <View
       className="py-4"
       style={{
-        backgroundColor: color['gray-6'],
+        backgroundColor: color['gray-3'],
       }}>
       <FlatList
         horizontal
@@ -52,11 +52,11 @@ export default function GenreList({
         renderItem={({item}) => (
           <TouchableOpacity
             onPress={() => onPress(item)}
-            className="px-3 py-2 rounded-md bg-gray-200 mx-1 flex-row items-center space-x-1.5"
+            className="px-3 py-2 rounded-md mx-1 flex-row items-center space-x-1.5"
             style={{
               backgroundColor: genres.includes(item.slug)
                 ? color.primary
-                : color['gray-4'],
+                : color['gray-2'],
             }}>
             {genres.includes(item.slug) && item.slug !== 'all' && (
               <CheckCircle2Icon color="white" size={18} />
@@ -64,7 +64,7 @@ export default function GenreList({
             <Text
               className="text-sm"
               style={{
-                color: genres.includes(item.slug) ? 'white' : color['gray-2'],
+                color: genres.includes(item.slug) ? 'white' : color['gray-5'],
                 ...font.semibold,
               }}>
               {item.name}

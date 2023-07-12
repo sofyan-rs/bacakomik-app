@@ -28,7 +28,7 @@ export default function ComicUpdates({refreshing, comicUpdates}: Props) {
       <View
         className="flex-row items-center justify-between mx-5 mt-5 mb-2 pb-3 space-x-1.5 border-b-2 border-dashed"
         style={{
-          borderColor: color['gray-3'],
+          borderColor: color['gray-4'],
         }}>
         <View className="flex-row items-center space-x-1.5">
           <BookOpenIcon color={color.primary} />
@@ -78,7 +78,7 @@ export default function ComicUpdates({refreshing, comicUpdates}: Props) {
             />
             <Text
               className="text-center text-base"
-              style={{color: color['gray-2'], ...font.semibold}}>
+              style={{color: color['gray-5'], ...font.semibold}}>
               Maaf komik tidak ditemukan
             </Text>
           </View>

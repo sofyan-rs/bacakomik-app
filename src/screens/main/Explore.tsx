@@ -148,7 +148,7 @@ export default function Explore() {
   return (
     <SafeAreaView
       style={{
-        backgroundColor: color['gray-4'],
+        backgroundColor: color['gray-2'],
       }}>
       <LayoutMain>
         <>
@@ -207,7 +207,7 @@ export default function Explore() {
                     />
                     <Text
                       className="text-center text-base"
-                      style={{color: color['gray-2'], ...font.semibold}}>
+                      style={{color: color['gray-5'], ...font.semibold}}>
                       Maaf komik tidak ditemukan
                     </Text>
                   </View>

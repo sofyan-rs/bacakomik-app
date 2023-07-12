@@ -4,19 +4,27 @@ import React from 'react';
 import {HotComicItem} from '../../types';
 import {color, font} from '../../theme';
 import {StarIcon} from 'lucide-react-native';
+import {useNavigation} from '@react-navigation/native';
 
 interface Props {
   item: HotComicItem;
 }
 
 export default function HotComicCard({item}: Props) {
+  const navigate = useNavigation<any>();
+
   return (
     <Pressable
+      onPress={() =>
+        navigate.navigate('ComicDetail', {
+          slug: item.slug,
+        })
+      }
       className="mx-2 rounded-lg my-2 overflow-hidden"
       style={{
-        backgroundColor: 'white',
+        backgroundColor: color['gray-2'],
         elevation: 3,
-        shadowColor: color['gray-2'],
+        shadowColor: color['gray-3'],
       }}>
       <Image
         source={
@@ -26,7 +34,7 @@ export default function HotComicCard({item}: Props) {
                 uri: item.coverImg,
               }
         }
-        style={{width: 200, height: 150, backgroundColor: color['gray-4']}}
+        style={{width: 200, height: 150, backgroundColor: color['gray-2']}}
       />
       <Text
         className="absolute top-2 right-2 text-white px-2 py-1 rounded-md text-xs"
@@ -60,7 +68,7 @@ export default function HotComicCard({item}: Props) {
           </Text>
           <View className="flex-row items-center space-x-1.5">
             <StarIcon color={color.star} fill={color.star} size={16} />
-            <Text style={{color: color['gray-2'], ...font.semibold}}>
+            <Text style={{color: color.text, ...font.semibold}}>
               {item.rating}
             </Text>
           </View>

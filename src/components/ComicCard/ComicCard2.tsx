@@ -4,19 +4,27 @@ import React from 'react';
 import {color, font} from '../../theme';
 import {CheckCircleIcon, RefreshCwIcon, StarIcon} from 'lucide-react-native';
 import {ComicListItem} from '../../types';
+import {useNavigation} from '@react-navigation/native';
 
 interface Props {
   item: ComicListItem;
 }
 
 export default function ComicCard2({item}: Props) {
+  const navigate = useNavigation<any>();
+
   return (
     <Pressable
+      onPress={() =>
+        navigate.navigate('ComicDetail', {
+          slug: item.slug,
+        })
+      }
       className="flex-1 rounded-lg m-3 overflow-hidden"
       style={{
-        backgroundColor: 'white',
+        backgroundColor: color['gray-1'],
         elevation: 3,
-        shadowColor: color['gray-2'],
+        shadowColor: color['gray-3'],
       }}>
       <View>
         <Image
@@ -85,7 +93,7 @@ export default function ComicCard2({item}: Props) {
           </Text>
           <View className="flex-row items-center space-x-1.5">
             <StarIcon color={color.star} fill={color.star} size={16} />
-            <Text style={{color: color['gray-2'], ...font.semibold}}>
+            <Text style={{color: color.text, ...font.semibold}}>
               {item.rating}
             </Text>
           </View>

@@ -94,18 +94,18 @@ export default function SearchComic() {
   return (
     <SafeAreaView
       style={{
-        backgroundColor: color['gray-4'],
+        backgroundColor: color['gray-2'],
       }}>
       <SearchBar search={search} setSearch={setSearch} />
       <View className="h-full pt-20">
         {search === '' && (
           <View className="flex-row justify-center">
             <View className="mt-10">
-              <FolderSearch2Icon color={color['gray-3']} size={200} />
+              <FolderSearch2Icon color={color['gray-1']} size={200} />
               <Text
                 className="text-xl text-center"
                 style={{
-                  color: color['gray-1'],
+                  color: color['gray-5'],
                   ...font.semibold,
                 }}>
                 Cari Judul Komik
@@ -150,7 +150,7 @@ export default function SearchComic() {
                   />
                   <Text
                     className="text-center text-base"
-                    style={{color: color['gray-2'], ...font.semibold}}>
+                    style={{color: color['gray-5'], ...font.semibold}}>
                     Maaf komik tidak ditemukan
                   </Text>
                 </View>
