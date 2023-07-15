@@ -10,6 +10,7 @@ interface Props {
   titleIcon?: React.ReactNode;
   isWithoutBack?: boolean;
   rightButtonIcon?: React.ReactNode;
+  rightButtonIcon2?: React.ReactNode;
   onPressRightButton?: () => void;
 }
 
@@ -18,6 +19,7 @@ export default function TopBar({
   titleIcon,
   isWithoutBack,
   rightButtonIcon,
+  rightButtonIcon2,
   onPressRightButton,
 }: Props) {
   const navigate = useNavigation();
@@ -64,6 +66,14 @@ export default function TopBar({
             shadowColor: color.primary,
           }}>
           {rightButtonIcon}
+        </TouchableHighlight>
+      )}
+      {onPressRightButton && rightButtonIcon2 && (
+        <TouchableHighlight
+          className="p-2 rounded-full"
+          onPress={onPressRightButton}
+          underlayColor={color['gray-3']}>
+          {rightButtonIcon2}
         </TouchableHighlight>
       )}
     </View>

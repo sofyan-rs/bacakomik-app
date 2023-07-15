@@ -47,6 +47,11 @@ export const historySlice = createSlice({
       }
       state.historyChapter = historyChapter;
     },
+    SET_INITIAL_HISTORY: (state, action: PayloadAction<HistoryState>) => {
+      const {payload} = action;
+      state.historySeries = payload.historySeries;
+      state.historyChapter = payload.historyChapter;
+    },
     REMOVE_ALL_HISTORY: state => {
       state.historySeries = [];
       state.historyChapter = [];
@@ -54,5 +59,6 @@ export const historySlice = createSlice({
   },
 });
 
-export const {UPDATE_HISTORY, REMOVE_ALL_HISTORY} = historySlice.actions;
+export const {UPDATE_HISTORY, SET_INITIAL_HISTORY, REMOVE_ALL_HISTORY} =
+  historySlice.actions;
 export default historySlice.reducer;

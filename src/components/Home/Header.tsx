@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {View, Text, Image, TouchableHighlight} from 'react-native';
+import {View, Text, Image, TouchableHighlight, Pressable} from 'react-native';
 import React from 'react';
 import {color, font} from '../../theme';
 import {SearchIcon} from 'lucide-react-native';
@@ -31,16 +31,21 @@ export default function Header() {
     <View className="m-5">
       <View className="flex-row justify-between items-center">
         <View className="flex-row items-center space-x-3">
-          <Image
-            source={{uri: userData?.photoURL}}
-            style={{
-              width: 50,
-              height: 50,
-              borderRadius: 50,
-              borderWidth: 2,
-              borderColor: color['gray-4'],
-            }}
-          />
+          <Pressable
+            onPress={() => {
+              navigate.navigate('More');
+            }}>
+            <Image
+              source={{uri: userData?.photoURL}}
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 50,
+                borderWidth: 2,
+                borderColor: color['gray-4'],
+              }}
+            />
+          </Pressable>
           <View>
             <Text
               className="text-base"

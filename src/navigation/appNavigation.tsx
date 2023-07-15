@@ -8,7 +8,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import Home from '../screens/main/Home';
 import Favorite from '../screens/main/Favorite';
-// import More from '../screens/main/More';
+import More from '../screens/main/More';
 import TabBar from '../components/TabBar/TabBar';
 import Explore from '../screens/main/Explore';
 import LatestUpdates from '../screens/sub/LatestUpdates';
@@ -25,6 +25,8 @@ import History from '../screens/main/History';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SET_INITIAL_FAVORITE} from '../redux/slice/favoriteSlice';
 import ReadChapter from '../screens/sub/ReadChapter';
+import {SET_INITIAL_HISTORY} from '../redux/slice/historySlice';
+import ChapterList from '../screens/sub/ChapterList';
 
 const Tab = createBottomTabNavigator();
 
@@ -86,8 +88,21 @@ export default function AppNavigation() {
     }
   };
 
+  const getInitialHistoryData = async () => {
+    try {
+      const historyData = await AsyncStorage.getItem('history');
+      const historyDataParsed = JSON.parse(historyData || '{}');
+      if (historyData !== null) {
+        dispatch(SET_INITIAL_HISTORY(historyDataParsed));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     getInitialFavoriteData();
+    getInitialHistoryData();
     GoogleSignin.configure({
       webClientId:
         '334765493163-ngoca79kbekpcg35uab8vijh1hn440nq.apps.googleusercontent.com',
@@ -140,6 +155,16 @@ export default function AppNavigation() {
           <Stack.Screen
             name="ReadChapter"
             component={ReadChapter}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="More"
+            component={More}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ChapterList"
+            component={ChapterList}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

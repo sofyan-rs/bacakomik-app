@@ -28,7 +28,7 @@ export default function SearchBar({search, setSearch}: Props) {
         elevation: 3,
         shadowColor: color['gray-3'],
       }}>
-      <View className="flex-row items-center space-x-1.5 flex-1">
+      <View className="flex-row items-center space-x-2 flex-1">
         <TouchableHighlight
           className="p-2 rounded-full"
           onPress={() => {

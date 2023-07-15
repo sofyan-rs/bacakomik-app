@@ -1,32 +1,31 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
-  View,
-  Text,
-  FlatList,
-  Image,
-  Dimensions,
-  ActivityIndicator,
-} from 'react-native';
+import {FlatList, Dimensions, ActivityIndicator, Pressable} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import {ChapterData} from '../../types';
+import {ChapterData, HistoryChapterItem, HistoryItem} from '../../types';
 import ApiClient from '../../api/ApiClient';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AutoHeightImage from 'react-native-auto-height-image';
-// import Zoom from 'react-native-zoom-reanimated';
 import {color} from '../../theme';
-import {useSharedValue} from 'react-native-reanimated';
+import {Zoom, createZoomListComponent} from 'react-native-reanimated-zoom';
+import Navbar from '../../components/Chapter/Navbar';
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
+import {UPDATE_HISTORY} from '../../redux/slice/historySlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// const ZoomFlatList = createZoomListComponent(FlatList);
+const ZoomFlatList = createZoomListComponent(FlatList);
 
 export default function ReadChapter({route}: any) {
-  const {slug, seriesTitle, seriesSlug, coverImg} = route.params;
+  const {slug, seriesSlug, coverImg} = route.params;
 
   const [chapterData, setChapterData] = useState<ChapterData>();
 
-  const [showNavbar, setShowNavbar] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
   const [loading, setLoading] = useState(true);
 
-  const translateY = useSharedValue(0);
+  const dispatch = useAppDispatch();
+  const {historySeries, historyChapter} = useAppSelector(
+    state => state.history,
+  );
 
   const getChapterData = () => {
     setLoading(true);
@@ -43,48 +42,94 @@ export default function ReadChapter({route}: any) {
       });
   };
 
-  const onRefresh = () => {
-    getChapterData();
+  const addToHistory = async () => {
+    if (chapterData) {
+      const history: HistoryItem = {
+        seriesTitle: chapterData?.seriesTitle,
+        seriesSlug: chapterData?.seriesSlug,
+        coverImg: coverImg,
+        chapterNumber: chapterData?.chapterNumber,
+        chapterSlug: slug,
+      };
+      dispatch(UPDATE_HISTORY(history));
+      const newHistorySeries = historySeries.filter(
+        (item: HistoryItem) => item.seriesSlug !== seriesSlug,
+      );
+      const historyData = [...newHistorySeries, history];
+      const newHistoryChapter = historyChapter.filter(
+        (item: HistoryChapterItem) => item.chapterSlug !== slug,
+      );
+      const historyChapterData = [
+        ...newHistoryChapter,
+        {
+          chapterNumber: chapterData?.chapterNumber,
+          chapterSlug: slug,
+        },
+      ];
+      try {
+        await AsyncStorage.setItem(
+          'history',
+          JSON.stringify({
+            historySeries: historyData,
+            historyChapter: historyChapterData,
+          }),
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   useEffect(() => {
     if (slug) {
-      onRefresh();
+      getChapterData();
+      setTimeout(() => {
+        setShowNavbar(false);
+      }, 3000);
     }
   }, [slug]);
+
+  useEffect(() => {
+    addToHistory();
+  }, [chapterData]);
 
   const {width} = Dimensions.get('window');
 
   return (
-    <SafeAreaView className="flex-1" style={{backgroundColor: color.black}}>
-      {loading && (
-        <ActivityIndicator
-          size="large"
-          color={color.primary}
-          className="my-4"
+    <SafeAreaView
+      className="flex-1 h-full"
+      style={{backgroundColor: color.black}}>
+      <Pressable onPress={() => setShowNavbar(!showNavbar)} className="h-full">
+        {loading && (
+          <ActivityIndicator
+            size="large"
+            color={color.primary}
+            className="my-4 h-full"
+          />
+        )}
+        <Navbar
+          title={chapterData?.seriesTitle}
+          chapter={chapterData?.chapterNumber}
+          seriesSLug={seriesSlug}
+          showNavbar={showNavbar}
+          coverImg={coverImg}
+          prevChapter={chapterData?.previousChapterSlug}
+          nextChapter={chapterData?.nextChapterSlug}
         />
-      )}
-
-      {chapterData && (
-        <FlatList
-          data={chapterData.imageChapters}
-          numColumns={1}
-          renderItem={({item}) => (
-            // <Zoom>
-            <AutoHeightImage width={width} source={{uri: item}} />
-          )}
-          pagingEnabled
-          // horizontal
-          keyExtractor={item => item}
-          onScroll={e => {
-            if (e.nativeEvent.contentOffset.y > 100) {
-              setShowNavbar(true);
-            } else {
-              setShowNavbar(false);
-            }
-          }}
-        />
-      )}
+        {chapterData && (
+          <ZoomFlatList
+            data={chapterData.imageChapters}
+            numColumns={1}
+            keyExtractor={item => item}
+            onEndReached={() => setShowNavbar(true)}
+            renderItem={({item}) => (
+              <Zoom>
+                <AutoHeightImage width={width} source={{uri: item}} />
+              </Zoom>
+            )}
+          />
+        )}
+      </Pressable>
     </SafeAreaView>
   );
 }
