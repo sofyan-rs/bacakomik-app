@@ -3,6 +3,7 @@ export const color = {
   primaryDark: '#ef4444',
   text: '#eeeeee',
   overlay: '#00000080',
+  black: '#000000',
   star: '#FFC107',
   mangaType: '#3367d6',
   manhwaType: '#a12e24',

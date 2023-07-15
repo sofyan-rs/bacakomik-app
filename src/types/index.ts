@@ -46,3 +46,33 @@ export interface ComicDetailData {
   synopsis: string;
   chapters: Chapter[];
 }
+
+export interface FavoriteItem {
+  title: string;
+  slug: string;
+  coverImg: string;
+  type: string;
+}
+
+export interface HistoryItem {
+  seriesTitle: string;
+  seriesSlug: string;
+  coverImg: string;
+  chapterNumber: string;
+  chapterSlug: string;
+}
+
+export interface HistoryChapterItem {
+  chapterNumber: string;
+  chapterSlug: string;
+}
+
+export interface ChapterData {
+  chapterTitle: string;
+  chapterNumber: string;
+  seriesTitle: string;
+  seriesSlug: string;
+  previousChapterSlug: string | null;
+  nextChapterSlug: string | null;
+  imageChapters: string[];
+}

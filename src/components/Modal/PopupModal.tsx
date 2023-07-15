@@ -64,7 +64,7 @@ export default function PopupModal({
             <View
               className="border-b-2 border-dashed px-5 py-3"
               style={{
-                borderColor: color['gray-4'],
+                borderColor: color['gray-2'],
               }}>
               <View className="flex-row justify-between items-center">
                 <Text

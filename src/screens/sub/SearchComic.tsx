@@ -32,7 +32,7 @@ export default function SearchComic() {
 
   const getComicSearch = () => {
     setRefreshing(true);
-    console.log(search.replace(/ /g, '+').toLowerCase());
+    // console.log(search.replace(/ /g, '+').toLowerCase());
     ApiClient.get('/search/1/', {
       params: {
         search: search.replace(/ /g, '+').toLowerCase(),

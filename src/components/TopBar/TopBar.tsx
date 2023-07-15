@@ -6,7 +6,7 @@ import {ArrowLeftIcon} from 'lucide-react-native';
 import {useNavigation} from '@react-navigation/native';
 
 interface Props {
-  title: string;
+  title?: string;
   titleIcon?: React.ReactNode;
   isWithoutBack?: boolean;
   rightButtonIcon?: React.ReactNode;
@@ -30,7 +30,7 @@ export default function TopBar({
         elevation: 5,
         shadowColor: color['gray-2'],
       }}>
-      <View className="flex-row items-center space-x-2">
+      <View className="flex-row flex-1 items-center space-x-2">
         {!isWithoutBack && (
           <TouchableHighlight
             className="p-2 rounded-full"
@@ -41,14 +41,17 @@ export default function TopBar({
             <ArrowLeftIcon color={color.primary} size={30} strokeWidth={2} />
           </TouchableHighlight>
         )}
-        <View className="flex-row items-center py-2 space-x-1.5">
-          {titleIcon}
-          <Text
-            className="text-xl"
-            style={{color: color.text, ...font.semibold}}>
-            {title}
-          </Text>
-        </View>
+        {title && (
+          <View className="flex-row flex-1 items-center py-2 space-x-1.5">
+            {titleIcon}
+            <Text
+              numberOfLines={1}
+              className="text-xl"
+              style={{color: color.text, ...font.semibold}}>
+              {title}
+            </Text>
+          </View>
+        )}
       </View>
       {onPressRightButton && rightButtonIcon && (
         <TouchableHighlight

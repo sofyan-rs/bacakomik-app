@@ -28,7 +28,9 @@ export default function HotComicCard({item}: Props) {
       }}>
       <Image
         source={
-          item.coverImg === ''
+          item.coverImg === '' ||
+          item.coverImg === null ||
+          item.coverImg === undefined
             ? require('../../assets/img/bochi-no-img.webp')
             : {
                 uri: item.coverImg,
@@ -37,7 +39,7 @@ export default function HotComicCard({item}: Props) {
         style={{width: 200, height: 150, backgroundColor: color['gray-2']}}
       />
       <Text
-        className="absolute top-2 right-2 text-white px-2 py-1 rounded-md text-xs"
+        className="absolute top-2 right-2 px-2 py-1 rounded-md text-xs"
         style={{
           backgroundColor:
             item.type === 'Manga'
@@ -45,6 +47,7 @@ export default function HotComicCard({item}: Props) {
               : item.type === 'Manhua'
               ? color.manhuaType
               : color.manhwaType,
+          color: color.text,
           ...font.medium,
         }}>
         {item.type}

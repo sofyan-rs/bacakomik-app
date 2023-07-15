@@ -49,7 +49,9 @@ export default function ComicUpdates({refreshing, comicUpdates}: Props) {
             elevation: 3,
             shadowColor: color.primary,
           }}>
-          <Text className="text-sm text-white" style={font.semibold}>
+          <Text
+            className="text-sm"
+            style={{color: color.text, ...font.semibold}}>
             Lihat Semua
           </Text>
         </TouchableHighlight>

@@ -28,7 +28,9 @@ export default function ComicCard1({item}: Props) {
       <Image
         className="rounded-md"
         source={
-          item.coverImg === ''
+          item.coverImg === '' ||
+          item.coverImg === null ||
+          item.coverImg === undefined
             ? require('../../assets/img/bochi-no-img.webp')
             : {
                 uri: item.coverImg,
@@ -38,7 +40,7 @@ export default function ComicCard1({item}: Props) {
       />
       <View className="flex-1 space-y-2 pr-1.5">
         <Text
-          className="max-w-full text-[15px]"
+          className="text-[15px]"
           style={{color: color.text, ...font.semibold}}
           numberOfLines={1}>
           {item.title}

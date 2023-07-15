@@ -1,12 +1,14 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unstable-nested-components */
+import {View, ActivityIndicator} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import Home from '../screens/main/Home';
 import Favorite from '../screens/main/Favorite';
-import More from '../screens/main/More';
+// import More from '../screens/main/More';
 import TabBar from '../components/TabBar/TabBar';
 import Explore from '../screens/main/Explore';
 import LatestUpdates from '../screens/sub/LatestUpdates';
@@ -17,6 +19,12 @@ import auth from '@react-native-firebase/auth';
 import {UPDATE_USER} from '../redux/slice/userSlice';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import ComicDetail from '../screens/sub/ComicDetail';
+import {color} from '../theme';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import History from '../screens/main/History';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {SET_INITIAL_FAVORITE} from '../redux/slice/favoriteSlice';
+import ReadChapter from '../screens/sub/ReadChapter';
 
 const Tab = createBottomTabNavigator();
 
@@ -44,9 +52,9 @@ function MainTabs() {
         options={{title: 'Favorit', headerShown: false}}
       />
       <Tab.Screen
-        name="More"
-        component={More}
-        options={{title: 'Lainnya', headerShown: false}}
+        name="History"
+        component={History}
+        options={{title: 'Riwayat', headerShown: false}}
       />
     </Tab.Navigator>
   );
@@ -67,18 +75,42 @@ export default function AppNavigation() {
     }
   }
 
+  const getInitialFavoriteData = async () => {
+    try {
+      const favoriteData = await AsyncStorage.getItem('favorite');
+      if (favoriteData !== null) {
+        dispatch(SET_INITIAL_FAVORITE(JSON.parse(favoriteData)));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
+    getInitialFavoriteData();
     GoogleSignin.configure({
       webClientId:
         '334765493163-ngoca79kbekpcg35uab8vijh1hn440nq.apps.googleusercontent.com',
     });
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    console.log(userData);
+    // console.log(userData);
     return subscriber;
   }, []);
 
   if (initializing) {
-    return null;
+    return (
+      <SafeAreaView style={{flex: 1, backgroundColor: color['gray-2']}}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: color['gray-2'],
+          }}>
+          <ActivityIndicator size={60} color={color.primary} className="my-4" />
+        </View>
+      </SafeAreaView>
+    );
   }
 
   if (userData !== null) {
@@ -103,6 +135,11 @@ export default function AppNavigation() {
           <Stack.Screen
             name="ComicDetail"
             component={ComicDetail}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ReadChapter"
+            component={ReadChapter}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

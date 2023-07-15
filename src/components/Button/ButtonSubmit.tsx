@@ -21,16 +21,8 @@ export default function ButtonSubmit({text, ...props}: any) {
       disabled={props.disabled}>
       <View className="overflow-hidden items-center">
         <Text
-          className={`${
-            props.disabled
-              ? 'text-gray-2'
-              : props.secondary
-              ? props.textRed
-                ? 'text-primary'
-                : 'text-dark'
-              : 'text-white'
-          } text-center text-lg`}
-          style={font.semibold}>
+          className="text-center text-lg"
+          style={{color: color.text, ...font.semibold}}>
           {text}
         </Text>
       </View>
