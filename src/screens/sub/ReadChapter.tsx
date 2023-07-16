@@ -1,21 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {FlatList, Dimensions, ActivityIndicator, Pressable} from 'react-native';
-import React, {useState, useEffect} from 'react';
+import {FlatList, ActivityIndicator, Pressable} from 'react-native';
+import React, {useState, useEffect, useRef} from 'react';
 import {ChapterData, HistoryChapterItem, HistoryItem} from '../../types';
 import ApiClient from '../../api/ApiClient';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import AutoHeightImage from 'react-native-auto-height-image';
 import {color} from '../../theme';
-import {Zoom, createZoomListComponent} from 'react-native-reanimated-zoom';
+import {createZoomListComponent} from 'react-native-reanimated-zoom';
 import Navbar from '../../components/Chapter/Navbar';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {UPDATE_HISTORY} from '../../redux/slice/historySlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import CustomImg from '../../components/CustomImg/CustomImg';
+import {useIsFocused} from '@react-navigation/native';
 
 const ZoomFlatList = createZoomListComponent(FlatList);
 
 export default function ReadChapter({route}: any) {
   const {slug, seriesSlug, coverImg} = route.params;
+
+  const chapterRef = useRef<FlatList>(null);
+
+  const isFocused = useIsFocused();
 
   const [chapterData, setChapterData] = useState<ChapterData>();
 
@@ -90,10 +95,16 @@ export default function ReadChapter({route}: any) {
   }, [slug]);
 
   useEffect(() => {
+    if (isFocused) {
+      if (chapterRef && chapterRef.current) {
+        chapterRef.current.scrollToIndex({index: 0, animated: true});
+      }
+    }
+  }, [isFocused]);
+
+  useEffect(() => {
     addToHistory();
   }, [chapterData]);
-
-  const {width} = Dimensions.get('window');
 
   return (
     <SafeAreaView
@@ -119,14 +130,11 @@ export default function ReadChapter({route}: any) {
         {chapterData && (
           <ZoomFlatList
             data={chapterData.imageChapters}
+            ref={chapterRef}
             numColumns={1}
             keyExtractor={item => item}
             onEndReached={() => setShowNavbar(true)}
-            renderItem={({item}) => (
-              <Zoom>
-                <AutoHeightImage width={width} source={{uri: item}} />
-              </Zoom>
-            )}
+            renderItem={({item}) => <CustomImg urlImg={item} />}
           />
         )}
       </Pressable>
