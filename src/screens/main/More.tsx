@@ -88,7 +88,7 @@ export default function More() {
           backgroundColor: color['gray-2'],
           ...font.medium,
         }}>
-        Versi 1.0.1
+        Versi 1.0.3
       </Text>
       <View className="p-5 pb-8">
         <ButtonSubmit text="Logout" onPress={signOut} />

@@ -131,6 +131,7 @@ export default function ReadChapter({route}: any) {
           <ZoomFlatList
             data={chapterData.imageChapters}
             ref={chapterRef}
+            initialNumToRender={3}
             numColumns={1}
             keyExtractor={item => item}
             onEndReached={() => setShowNavbar(true)}

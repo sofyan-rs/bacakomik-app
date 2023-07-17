@@ -14,7 +14,7 @@ export default function CustomImg({urlImg}: {urlImg: string}) {
   const {width} = Dimensions.get('window');
 
   React.useEffect(() => {
-    FastImage.preload([{uri: urlImg}]);
+    // FastImage.preload([{uri: urlImg}]);
     Image.getSize(urlImg, (width, height) => {
       setWidthImg(width);
       setHeightImg(height);

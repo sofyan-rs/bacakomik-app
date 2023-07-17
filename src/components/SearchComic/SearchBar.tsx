@@ -50,6 +50,8 @@ export default function SearchBar({search, setSearch}: Props) {
           onChangeText={text => setSearchText(text)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
+          onSubmitEditing={submitSearch}
+          inputMode="search"
         />
       </View>
       <TouchableHighlight
