@@ -4,7 +4,6 @@ import {Image, Dimensions, ActivityIndicator} from 'react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
 import {color} from '../../theme';
-import {Zoom} from 'react-native-reanimated-zoom';
 
 export default function CustomImg({urlImg}: {urlImg: string}) {
   const [widthImg, setWidthImg] = React.useState(0);
@@ -30,17 +29,18 @@ export default function CustomImg({urlImg}: {urlImg: string}) {
           className="my-4"
         />
       )}
-      <Zoom>
-        <FastImage
-          style={{
-            width: width,
-            height: widthImg > 0 ? width / (widthImg / heightImg) : 0,
-          }}
-          source={{uri: urlImg}}
-          resizeMode={FastImage.resizeMode.contain}
-          onLoadEnd={() => setLoading(false)}
-        />
-      </Zoom>
+      <FastImage
+        style={{
+          width: width,
+          height: widthImg > 0 ? width / (widthImg / heightImg) : 0,
+        }}
+        source={{
+          uri: urlImg,
+          priority: FastImage.priority.normal,
+        }}
+        resizeMode={FastImage.resizeMode.contain}
+        onLoadEnd={() => setLoading(false)}
+      />
     </>
   );
 }

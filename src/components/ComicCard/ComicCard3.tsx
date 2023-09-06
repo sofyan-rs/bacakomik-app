@@ -33,7 +33,7 @@ export default function ComicCard3({item}: Props) {
           elevation: 3,
           shadowColor: color['gray-3'],
         }}>
-        <View className="flex-1">
+        <View>
           <Image
             source={
               item.coverImg === '' ||

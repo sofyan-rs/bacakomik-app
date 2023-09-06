@@ -23,7 +23,7 @@ export default function TopBar2({title, showTopBar}: Props) {
 
   return (
     <Animated.View
-      className="px-5 py-4 absolute top-0 left-0 right-0 z-40 flex-row justify-between items-center  space-x-2"
+      className="px-5 py-4 absolute top-0 left-0 right-0 z-40 flex-row justify-between items-center space-x-2"
       style={topBarStyle}>
       <TouchableHighlight
         className="p-2 rounded-full"

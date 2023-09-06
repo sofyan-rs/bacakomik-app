@@ -1,26 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {FlatList, ActivityIndicator, Pressable} from 'react-native';
+import {FlatList, ActivityIndicator} from 'react-native';
 import React, {useState, useEffect, useRef} from 'react';
 import {ChapterData, HistoryChapterItem, HistoryItem} from '../../types';
 import ApiClient from '../../api/ApiClient';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {color} from '../../theme';
-import {createZoomListComponent} from 'react-native-reanimated-zoom';
 import Navbar from '../../components/Chapter/Navbar';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {UPDATE_HISTORY} from '../../redux/slice/historySlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CustomImg from '../../components/CustomImg/CustomImg';
-import {useIsFocused} from '@react-navigation/native';
-
-const ZoomFlatList = createZoomListComponent(FlatList);
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
 export default function ReadChapter({route}: any) {
   const {slug, seriesSlug, coverImg} = route.params;
 
   const chapterRef = useRef<FlatList>(null);
 
-  const isFocused = useIsFocused();
+  // const isFocused = useIsFocused();
 
   const [chapterData, setChapterData] = useState<ChapterData>();
 
@@ -94,23 +91,21 @@ export default function ReadChapter({route}: any) {
     }
   }, [slug]);
 
-  useEffect(() => {
-    if (isFocused) {
-      if (chapterRef && chapterRef.current) {
-        chapterRef.current.scrollToIndex({index: 0, animated: true});
-      }
-    }
-  }, [isFocused]);
+  // useEffect(() => {
+  //   if (isFocused) {
+  //     if (chapterRef && chapterRef.current) {
+  //       chapterRef.current.scrollToIndex({index: 0, animated: true});
+  //     }
+  //   }
+  // }, [isFocused]);
 
   useEffect(() => {
     addToHistory();
   }, [chapterData]);
 
   return (
-    <SafeAreaView
-      className="flex-1 h-full"
-      style={{backgroundColor: color.black}}>
-      <Pressable onPress={() => setShowNavbar(!showNavbar)} className="h-full">
+    <SafeAreaView className="min-h-full" style={{backgroundColor: color.black}}>
+      <TouchableWithoutFeedback onPress={() => setShowNavbar(!showNavbar)}>
         {loading && (
           <ActivityIndicator
             size="large"
@@ -128,17 +123,16 @@ export default function ReadChapter({route}: any) {
           nextChapter={chapterData?.nextChapterSlug}
         />
         {chapterData && (
-          <ZoomFlatList
+          <FlatList
             data={chapterData.imageChapters}
             ref={chapterRef}
-            initialNumToRender={3}
-            numColumns={1}
+            // initialNumToRender={10}
             keyExtractor={item => item}
             onEndReached={() => setShowNavbar(true)}
             renderItem={({item}) => <CustomImg urlImg={item} />}
           />
         )}
-      </Pressable>
+      </TouchableWithoutFeedback>
     </SafeAreaView>
   );
 }

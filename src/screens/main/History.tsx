@@ -31,7 +31,7 @@ export default function History() {
             //   navigate.navigate('SearchComic');
             // }}
           />
-          <View className="h-full pt-20">
+          <View className="h-full pt-16">
             <FlatList
               className="h-full px-4"
               data={historySeries}
@@ -41,7 +41,7 @@ export default function History() {
                 paddingBottom: isLandscape ? 10 : 35,
               }}
               renderItem={({item}) => (
-                <ComicCard4 item={item} key={item.slug} />
+                <ComicCard4 item={item} key={item.seriesSlug} />
               )}
               ListEmptyComponent={
                 <View className="my-3">

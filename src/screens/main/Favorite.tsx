@@ -84,7 +84,7 @@ export default function Favorite() {
             isWithoutBack
             titleIcon={<AlbumIcon color={color.primary} />}
           />
-          <View className="h-full pt-[76px]">
+          <View className="h-full pt-[70px]">
             <Tab.Navigator
               sceneContainerStyle={{backgroundColor: color['gray-2']}}
               screenOptions={{

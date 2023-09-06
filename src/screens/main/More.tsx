@@ -10,6 +10,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import ButtonSubmit from '../../components/Button/ButtonSubmit';
 import {ArrowLeftIcon} from 'lucide-react-native';
 import {useNavigation} from '@react-navigation/native';
+import {getVersion} from 'react-native-device-info';
 
 export default function More() {
   const navigate = useNavigation();
@@ -22,6 +23,8 @@ export default function More() {
     await GoogleSignin.signOut();
     dispatch(UPDATE_USER(null));
   }
+
+  const version = getVersion();
 
   return (
     <SafeAreaView
@@ -88,7 +91,7 @@ export default function More() {
           backgroundColor: color['gray-2'],
           ...font.medium,
         }}>
-        Versi 1.0.3
+        Versi {version}
       </Text>
       <View className="p-5 pb-8">
         <ButtonSubmit text="Logout" onPress={signOut} />
